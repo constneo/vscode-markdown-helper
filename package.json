@@ -1,0 +1,121 @@
+{
+  "name": "vscode-markdown-helper",
+  "displayName": "Markdown Helper",
+  "version": "1.0.5",
+  "publisher": "constneo",
+  "description": "Markdown Helper.",
+  "type": "module",
+  "author": "constneo",
+  "categories": [
+    "Programming Languages"
+  ],
+  "icon": "assets/icon.dark.png",
+  "engines": {
+    "vscode": "^1.98.0"
+  },
+  "main": "extension.cjs",
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:md"
+  ],
+  "scripts": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/constneo/"
+  },
+  "homepage": "https://github.com/constneo/",
+  "contributes": {
+    "languages": [
+      {
+        "id": "markdown",
+        "aliases": [
+          "markdown",
+          "md"
+        ],
+        "extensions": [
+          ".md"
+        ],
+        "icon": {
+          "light": "assets/icon.light.png",
+          "dark": "assets/icon.dark.png"
+        }
+      }
+    ],
+    "menus": {
+      "commandPalette": [],
+      "editor/context": [
+        {
+          "command": "vscode-markdown-helper.update",
+          "when": "editorLangId==markdown && config.vscode-markdown-helper.enable && config.vscode-markdown-helper.showUpdateMenu"
+        },
+        {
+          "command": "vscode-markdown-helper.updatedate",
+          "when": "editorLangId==markdown && config.vscode-markdown-helper.enable && config.vscode-markdown-helper.showUpdateDateMenu"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "vscode-markdown-helper.create",
+        "title": "Create with template"
+      },
+      {
+        "command": "vscode-markdown-helper.update",
+        "title": "Update with template"
+      },
+      {
+        "command": "vscode-markdown-helper.updatedate",
+        "title": "Update date"
+      }
+    ],
+    "keybindings": [],
+    "configuration": {
+      "id": "vscode-markdown-helper",
+      "type": "object",
+      "order": 20,
+      "title": "Markdown Helper",
+      "properties": {
+        "vscode-markdown-helper.showWelcome": {
+          "type": "boolean",
+          "default": false,
+          "description": "Turn on the display of welcome message."
+        },
+        "vscode-markdown-helper.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Turn on the this extension."
+        },
+        "vscode-markdown-helper.showUpdateMenu": {
+          "type": "boolean",
+          "default": true,
+          "description": "A context menu for whether to display 'Update Current File with Template'"
+        },
+        "vscode-markdown-helper.templatePath": {
+          "type": "string",
+          "default": "./.templates/default.md",
+          "description": "Path to template files"
+        },
+        "vscode-markdown-helper.tags": {
+          "type": "array",
+          "default": [],
+          "description": "Front matter options."
+        },
+        "vscode-markdown-helper.showUpdateDateMenu": {
+          "type": "boolean",
+          "default": false,
+          "description": "Front matter options."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@constneo/add": "^1.0.1",
+    "dayjs": "^1.11.13"
+  },
+  "extensionDependencies": [],
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "@types/vscode": "^1.98.0"
+  }
+}
