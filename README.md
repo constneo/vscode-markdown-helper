@@ -4,7 +4,6 @@
 
 ```txt
 {{title}}
-{{tags}}
 {{date}}
 ```
 
@@ -14,11 +13,17 @@
 // .vscode/settings.json
 
 {
-  "vscode-markdown-helper.isNotify": false,
+  "vscode-markdown-helper.enable": true,
+  "vscode-markdown-helper.showWelcome": true,
   "vscode-markdown-helper.templatePath": "./.templates/default.md",
-  "vscode-markdown-helper.useTemplate": true
+  "vscode-markdown-helper.showUpdateMenu": true,
+  "vscode-markdown-helper.showAddDateMenu": true
 }
 ```
+
+## addDate
+
+The selected text is replaced with the current date.
 
 ## Build
 

@@ -23,6 +23,8 @@ export function onCreater() {
   const disposable = vscode.commands.registerCommand(COMMANDS.create, async () => {
     try {
       const editor = vscode.window.activeTextEditor
+      if (!editor) return
+
       const fileName = await vscode.window.showInputBox({
         prompt: "Enter file name (with extension)"
       })
@@ -64,19 +66,23 @@ export function onUpdater() {
  * @returns {vscode.Disposable}
  */
 export function onUpdateDate() {
-  const disposable = vscode.commands.registerCommand(COMMANDS.updatedate, async uri => {
+  const disposable = vscode.commands.registerCommand(COMMANDS.addDate, async uri => {
     try {
-      // const editor = vscode.window.activeTextEditor
-      // const content = editor.document.getText()
-      const { selection, edit, document } = vscode.window.activeTextEditor
+      const editor = vscode.window.activeTextEditor
+      if (!editor) return
 
-      const sel = document.getText(selection)
-      console.log("[ sel ]->", sel)
-      const date = dayjs(sel).format()
+      // const content = editor.document.getText()
+      // const { selection, edit, document } = vscode.window.activeTextEditor
+
+      // const sel = document.getText(selection)
+      // console.log("[ sel ]->", sel)
+      const date = dayjs().format("YYYY-MM-DD HH:mm::ss")
       console.log("[ date ]->", date)
 
-      edit(e => {
+      editor.edit(e => {
         // e.replace(location, value)
+        // e.insert(editor.selection.active, date)
+        e.replace(editor.selection, date)
       })
     } catch (err) {
       vscode.window.showErrorMessage(`${err}`)

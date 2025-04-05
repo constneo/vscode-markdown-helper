@@ -52,7 +52,7 @@ export default async function patch(uri) {
       .replace("{{tags}}", tag)
       .replace("{{date}}", date)
 
-    const text = vscode.window.activeTextEditor.document.getText()
+    const text = editor.document.getText()
 
     if (text == "") {
       await vscode.workspace.fs.writeFile(uri, Buffer.from(content))

@@ -1,7 +1,7 @@
 {
   "name": "vscode-markdown-helper",
   "displayName": "Markdown Helper",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "publisher": "constneo",
   "description": "Markdown Helper.",
   "type": "module",
@@ -50,8 +50,8 @@
           "when": "editorLangId==markdown && config.vscode-markdown-helper.enable && config.vscode-markdown-helper.showUpdateMenu"
         },
         {
-          "command": "vscode-markdown-helper.updatedate",
-          "when": "editorLangId==markdown && config.vscode-markdown-helper.enable && config.vscode-markdown-helper.showUpdateDateMenu"
+          "command": "vscode-markdown-helper.addDate",
+          "when": "editorLangId==markdown && config.vscode-markdown-helper.enable && config.vscode-markdown-helper.showAddDateMenu"
         }
       ]
     },
@@ -65,8 +65,8 @@
         "title": "Update with template"
       },
       {
-        "command": "vscode-markdown-helper.updatedate",
-        "title": "Update date"
+        "command": "vscode-markdown-helper.addDate",
+        "title": "Add date"
       }
     ],
     "keybindings": [],
@@ -101,10 +101,10 @@
           "default": [],
           "description": "Front matter options."
         },
-        "vscode-markdown-helper.showUpdateDateMenu": {
+        "vscode-markdown-helper.showAddDateMenu": {
           "type": "boolean",
           "default": false,
-          "description": "Front matter options."
+          "description": "Update old date."
         }
       }
     }

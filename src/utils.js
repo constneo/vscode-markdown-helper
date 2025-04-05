@@ -5,7 +5,7 @@ import { message } from "./constans.js"
 
 /**
  * 检查环境变量以及配置
- * @returns {Promise<{enable:boolean,showUpdateDateMenu:boolean,showWelcome:boolean, showUpdateMenu:boolean,templatePath:string,tags:Array<string>}>}
+ * @returns {Promise<{enable:boolean,showAddDateMenu:boolean,showWelcome:boolean, showUpdateMenu:boolean,templatePath:string,tags:Array<string>}>}
  */
 export function getConfig() {
   return new Promise(resolve => {
@@ -16,7 +16,7 @@ export function getConfig() {
     const tags = config.get("tags")
     const showUpdateMenu = config.get("showUpdateMenu")
     const enable = config.get("enable")
-    const showUpdateDateMenu = config.get("showUpdateDateMenu")
+    const showAddDateMenu = config.get("showAddDateMenu")
 
     resolve({
       enable,
@@ -24,7 +24,7 @@ export function getConfig() {
       templatePath,
       tags,
       showUpdateMenu,
-      showUpdateDateMenu
+      showAddDateMenu
     })
   })
 }

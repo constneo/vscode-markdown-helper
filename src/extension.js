@@ -6,7 +6,7 @@ import vscode from "./vscode.js"
  * @param {vscode.ExtensionContext} context
  */
 export async function activate(context) {
-  const { showWelcome, enable, showUpdateMenu, showUpdateDateMenu } = await getConfig()
+  const { showWelcome, enable } = await getConfig()
   if (showWelcome) welcome()
 
   if (enable) {

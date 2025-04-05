@@ -7,7 +7,7 @@ export const ENV = {}
 export const COMMANDS = {
   create: `${PLUGIN_ID}.create`,
   update: `${PLUGIN_ID}.update`,
-  updatedate: `${PLUGIN_ID}.updatedate`
+  addDate: `${PLUGIN_ID}.addDate`
 }
 
 export const message = `Thank you for using ${PLUGIN_NAME}`
