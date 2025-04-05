@@ -1,10 +1,32 @@
 # Markdown Helper
 
+## TODO
+
+- Gen dir tree
+- Custom keyword
+
 ## Front Matter
 
-```txt
-{{title}}
-{{date}}
+```md
+---
+title: {{title}}
+tags: {{tags}}
+date: {{date}}
+---
+
+# {{title}}
+
+## Command
+
+```
+
+```
+
+## Ref
+
+- [Example](https://example.com)
+- [Demo](https://demo.com)
+
 ```
 
 ## Options
@@ -14,10 +36,11 @@
 
 {
   "vscode-markdown-helper.enable": true,
-  "vscode-markdown-helper.showWelcome": true,
+  "vscode-markdown-helper.showWelcome": false,
   "vscode-markdown-helper.templatePath": "./.templates/default.md",
   "vscode-markdown-helper.showUpdateMenu": true,
-  "vscode-markdown-helper.showAddDateMenu": true
+  "vscode-markdown-helper.showAddDateMenu": false,
+  "vscode-markdown-helper.tags": ["vscode", "js"]
 }
 ```
 
