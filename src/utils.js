@@ -1,32 +1,75 @@
+import { exec } from "child_process"
 import vscode from "./vscode.js"
-import { PLUGIN_ID } from "./constans.js"
-import { message } from "./constans.js"
-// import add from "@constneo/add"
+import { Config, EXNTENSION_ID, message } from "./const.js"
 
 /**
- * 检查环境变量以及配置
- * @returns {Promise<{enable:boolean,showAddDateMenu:boolean,showWelcome:boolean, showUpdateMenu:boolean,templatePath:string,tags:Array<string>}>}
+ * @typedef {import("../types/global")}
  */
-export function getConfig() {
-  return new Promise(resolve => {
-    const config = vscode.workspace.getConfiguration(PLUGIN_ID)
 
-    const showWelcome = config.get("showWelcome")
-    const templatePath = config.get("templatePath")
-    const tags = config.get("tags")
-    const showUpdateMenu = config.get("showUpdateMenu")
-    const enable = config.get("enable")
-    const showAddDateMenu = config.get("showAddDateMenu")
-
-    resolve({
-      enable,
-      showWelcome,
-      templatePath,
-      tags,
-      showUpdateMenu,
-      showAddDateMenu
+/**
+ * 执行命令
+ * @param {string} command
+ * @returns {Promise<string>}
+ */
+export function execCommand(command) {
+  return new Promise((resolve, reject) => {
+    exec(`${command}`, (error, stdout, stderr) => {
+      if (error) reject(`${stderr || error.message}`)
+      else resolve(stdout)
     })
   })
+}
+
+/**
+ * 获取插件的配置
+ * returns {Configuration}
+ */
+export function getConfig() {
+  const config = vscode.workspace.getConfiguration(EXNTENSION_ID)
+
+  for (const key in Config) {
+    Config[key] = config.get(key)
+  }
+
+  return Config
+}
+
+/**
+ * 获取插件的 package.json
+ *
+ * See {@link https://code.visualstudio.com/api/references/extension-manifest}
+ * @example
+ * context.extension.packageJSON
+ * vscode.extensions.getExtension(id).packageJSON
+ * @param {vscode.ExtensionContext} context
+ * @returns {any}
+ */
+export function getExtensionJson(context) {
+  return context.extension.packageJSON
+}
+
+/**
+ * 根据id获取获取插件.
+ *
+ * 如果是在扩展管理的右键上下文中,命令的参数,就是插件的id.
+ * @example
+ * vscode.commands.registerCommand(Commands.hello,(id) => { id === "publisher.name"})
+ * @param {string} id
+ * @returns {vscode.Extension<any>}
+ */
+export function getExtension(id) {
+  return vscode.extensions.getExtension(id)
+}
+
+/**
+ * 获取当前环境
+ *
+ * The mode the extension is running in. See {@link ExtensionMode}
+ * @param {vscode.ExtensionContext} context
+ * @returns {vscode.ExtensionMode}
+ */
+export function getMode(context) {
+  return context.extensionMode
 }
 
 /**
@@ -37,10 +80,20 @@ export function getRootDir(uri) {
   return vscode.workspace.getWorkspaceFolder(uri)
 }
 
-export async function welcome() {
+/**
+ * 右下角的欢迎语
+ * @return {void}
+ */
+export function welcome() {
+  console.log(`Register ${EXNTENSION_ID} extension .`)
+
   vscode.window.showInformationMessage(message)
 }
 
+/**
+ * 获取当前日期
+ * @returns {string}
+ */
 export function getCurrentDate() {
   let date = new Date()
   // console.log(date.getFullYear()) //当前日期的年 2022

@@ -1,15 +1,15 @@
 {
   "name": "vscode-markdown-helper",
-  "displayName": "NeoMarkdownHelper",
-  "version": "1.0.8",
+  "displayName": "Neo Markdown Helper",
+  "version": "1.0.11",
   "publisher": "constneo",
-  "description": "Markdown Helper.",
+  "description": "Neo Markdown Helper.",
   "type": "module",
   "author": "constneo",
   "categories": [
     "Programming Languages"
   ],
-  "icon": "assets/icon.dark.png",
+  "icon": "assets/icon.png",
   "engines": {
     "vscode": "^1.98.0"
   },
@@ -19,7 +19,7 @@
     "onLanguage:md"
   ],
   "scripts": {},
-  "license": "MIT",
+  "license": "LICENSE",
   "repository": {
     "type": "git",
     "url": "https://github.com/constneo/vscode-markdown-helper"
@@ -36,36 +36,69 @@
           ".md"
         ],
         "icon": {
-          "light": "assets/icon.light.png",
-          "dark": "assets/icon.dark.png"
+          "light": "assets/icon.png",
+          "dark": "assets/icon.png"
         }
       }
     ],
     "menus": {
-      "commandPalette": [],
-      "editor/context": [
+      "commandPalette": [
+        {
+          "command": "vscode-markdown-helper.create",
+          "group": "vscode-markdown-helper@1",
+          "when": "editorLangId==markdown && constneo.enable"
+        },
         {
           "command": "vscode-markdown-helper.update",
-          "when": "editorLangId==markdown && config.vscode-markdown-helper.enable && config.vscode-markdown-helper.showUpdateMenu"
+          "group": "vscode-markdown-helper@2",
+          "when": "editorLangId==markdown && constneo.enable"
         },
         {
           "command": "vscode-markdown-helper.addDate",
-          "when": "editorLangId==markdown && config.vscode-markdown-helper.enable && config.vscode-markdown-helper.showAddDateMenu"
+          "group": "vscode-markdown-helper@3",
+          "when": "editorLangId==markdown && constneo.enable"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "vscode-markdown-helper.update",
+          "when": "editorLangId==markdown && constneo.enable",
+          "group": "vscode-markdown-helper@1"
+        },
+        {
+          "command": "vscode-markdown-helper.addDate",
+          "when": "editorLangId==markdown && constneo.enable",
+          "group": "vscode-markdown-helper@2"
         }
       ]
     },
     "commands": [
       {
         "command": "vscode-markdown-helper.create",
-        "title": "Create with template"
+        "title": "Create with template",
+        "category": "Neo",
+        "icon": {
+          "light": "assets/icon.svg",
+          "dark": "assets/icon.svg"
+        }
       },
       {
         "command": "vscode-markdown-helper.update",
-        "title": "Update with template"
+        "title": "Update with template",
+        "category": "Neo",
+        "icon": {
+          "light": "assets/icon.svg",
+          "dark": "assets/icon.svg"
+        }
       },
       {
         "command": "vscode-markdown-helper.addDate",
-        "title": "Add date"
+        "title": "Add date",
+        "category": "Neo",
+        "icon": {
+          "light": "assets/icon.svg",
+          "dark": "assets/icon.svg"
+        }
       }
     ],
     "keybindings": [],
@@ -73,24 +106,24 @@
       "id": "vscode-markdown-helper",
       "type": "object",
       "order": 20,
-      "title": "Markdown Helper",
+      "title": "Neo Markdown Helper",
       "properties": {
-        "vscode-markdown-helper.showWelcome": {
-          "type": "boolean",
-          "default": false,
-          "description": "Turn on the display of welcome message."
-        },
         "vscode-markdown-helper.enable": {
           "type": "boolean",
           "default": true,
           "description": "Turn on the this extension."
         },
-        "vscode-markdown-helper.showUpdateMenu": {
+        "vscode-markdown-helper.welcome": {
           "type": "boolean",
-          "default": true,
-          "description": "A context menu for whether to display 'Update Current File with Template'"
+          "default": false,
+          "description": "Turn on the display of welcome message."
         },
-        "vscode-markdown-helper.templatePath": {
+        "vscode-markdown-helper.watcher": {
+          "type": "boolean",
+          "default": false,
+          "description": "Turn on the display of welcome message."
+        },
+        "vscode-markdown-helper.templates": {
           "type": "string",
           "default": "./.templates/default.md",
           "description": "Path to template files"
@@ -99,11 +132,6 @@
           "type": "array",
           "default": [],
           "description": "Front matter options."
-        },
-        "vscode-markdown-helper.showAddDateMenu": {
-          "type": "boolean",
-          "default": false,
-          "description": "Update old date."
         }
       }
     }

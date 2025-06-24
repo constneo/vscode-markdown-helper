@@ -2,8 +2,7 @@
 
 ## TODO
 
-- Gen dir tree
-- Custom keyword
+- Generate dir tree
 
 ## Front Matter
 
@@ -16,11 +15,9 @@ date: {{date}}
 
 # {{title}}
 
-## Command
+## Content 
 
-```
-
-```
+Something..
 
 ## Ref
 
@@ -42,7 +39,7 @@ date: {{date}}
   "vscode-markdown-helper.showAddDateMenu": false,
   "vscode-markdown-helper.tags": ["vscode", "js"]
 }
-```
+````
 
 ## addDate
 

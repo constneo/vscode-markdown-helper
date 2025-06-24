@@ -139,3 +139,6 @@ test.*
 /drop
 note.md
  
+build.nu
+out.js
+plugin.cjs

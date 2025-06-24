@@ -1,16 +1,21 @@
 /**
- * @param {import("vscode").ExtensionContext} context
+ * Load extension from ESM.
+ * @typedef {import("./types/global")}
+ * @returns {Promise<API>} Return a promise of the extension.
  */
-async function activate(context) {
-  // 加载 ESM
-  const esm = await import("./src/extension.js")
-  // 委托给 ES 模块的 activate 方法
-  esm.activate(context)
+async function loader() {
+  return {
+    // activate: context => esm.activate(context)
+    activate: async context => {
+      if (context.extensionMode == 2) {
+        let esm = await import("./src/extension.js")
+        return esm.activate(context)
+      } else {
+        const esm = await import("./out.js")
+        return esm.activate(context)
+      }
+    }
+  }
 }
 
-async function deactivate() {
-  const esm = await import("./src/extension.js")
-  esm.deactivate()
-}
-
-module.exports = { activate, deactivate }
+module.exports = loader()

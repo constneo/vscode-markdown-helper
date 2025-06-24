@@ -13,10 +13,11 @@
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}",
         "--disable-extensions",
-
         "${workspaceRoot}/test"
       ],
-      "env": {},
+      "env": {
+        "NODE_ENV":"DEBUG"
+      },
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
       "skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/**"]
       // "smartStep": true,

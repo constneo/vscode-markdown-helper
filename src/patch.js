@@ -9,9 +9,11 @@ import dayjs from "dayjs"
  */
 export default async function patch(uri) {
   console.log("[ 正在创建的文件 ]->", uri)
+  console.log("[ __dirname  ]->", import.meta.dirname)
+  console.log("[ __filename  ]->", import.meta.filename)
 
   try {
-    const { templatePath, tags } = await getConfig()
+    const { templates, tags } = getConfig()
 
     // 获取文件扩展
     // const ext = path.extname(uri.path)
@@ -25,7 +27,7 @@ export default async function patch(uri) {
     if (!editor) return
 
     const root = getRootDir(uri)
-    const tpl = path.join(root.uri.fsPath, templatePath)
+    const tpl = path.join(root.uri.fsPath, templates)
     const hasTpl = fs.existsSync(tpl)
 
     // 不存在模板文件
@@ -48,9 +50,9 @@ export default async function patch(uri) {
     // console.log("[ filename ]->", fileName)
 
     content = content
-      .replace("{{title}}", filename)
-      .replace("{{tags}}", tag)
-      .replace("{{date}}", date)
+      .replaceAll("{{title}}", filename)
+      .replaceAll("{{tags}}", tag)
+      .replaceAll("{{date}}", date)
 
     const text = editor.document.getText()
 

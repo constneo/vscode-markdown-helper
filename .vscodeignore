@@ -24,3 +24,5 @@ commands/*
 codelens.js
 dist/
 drop/
+node_modules/
+src/**/*

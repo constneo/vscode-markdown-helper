@@ -1,7 +1,7 @@
 import path from "node:path"
 import vscode from "./vscode.js"
-import { getRootDir } from "./utils.js"
-import { COMMANDS } from "./constans.js"
+import { getConfig, getRootDir, welcome } from "./utils.js"
+import { Commands } from "./const.js"
 import patch from "./patch.js"
 import dayjs from "dayjs"
 
@@ -20,7 +20,7 @@ export function onWatcher() {
  * @returns {vscode.Disposable}
  */
 export function onCreater() {
-  const disposable = vscode.commands.registerCommand(COMMANDS.create, async () => {
+  const disposable = vscode.commands.registerCommand(Commands.create, async () => {
     try {
       const editor = vscode.window.activeTextEditor
       if (!editor) return
@@ -48,7 +48,7 @@ export function onCreater() {
  * @returns {vscode.Disposable}
  */
 export function onUpdater() {
-  const disposable = vscode.commands.registerCommand(COMMANDS.update, async uri => {
+  const disposable = vscode.commands.registerCommand(Commands.update, async uri => {
     try {
       const editor = vscode.window.activeTextEditor
       if (!editor) return
@@ -65,8 +65,8 @@ export function onUpdater() {
  * 更新 Front Matter date
  * @returns {vscode.Disposable}
  */
-export function onUpdateDate() {
-  const disposable = vscode.commands.registerCommand(COMMANDS.addDate, async uri => {
+export function onAddDate() {
+  const disposable = vscode.commands.registerCommand(Commands.addDate, async uri => {
     try {
       const editor = vscode.window.activeTextEditor
       if (!editor) return

@@ -2,9 +2,10 @@
   "[nushell]": {
     "editor.defaultFormatter": "constneo.vscode-nushell-format"
   },
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "vscode-nushell-format.TOPIARY_CONFIG_FILE": "e:/config/topiary/languages.ncl",
   "vscode-nushell-format.TOPIARY_LANGUAGE_DIR": "e:/config/topiary/languages",
-  "svg.preview.background": "white"
+  "svg.preview.background": "white",
+  "vscode-convert-windows-path.showGenerateSnippet": true
   // "files.saveConflictResolution": "overwriteFileOnDisk"
 }
